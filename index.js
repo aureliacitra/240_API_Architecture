@@ -8,3 +8,12 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Asynchronous function to initialize the database connection and start the server
+async function startServer() {
+    await connectDatabase();
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+    });
+}
+
+startServer();
